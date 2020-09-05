@@ -2,6 +2,10 @@
 
 export SPARK_MASTER_HOST=`hostname`
 
+export SPARK_DIST_CLASSPATH=$(/hadoop/bin/hadoop classpath)
+
+export HADOOP_HOME=/hadoop
+
 . "/spark/sbin/spark-config.sh"
 
 . "/spark/bin/load-spark-env.sh"

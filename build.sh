@@ -1,8 +1,8 @@
-#!/bin/bash
+do#!/bin/bash
 
 set -e
 
-TAG=2.4.6
+TAG=2.4.6-3.2.0
 
 build() {
     NAME=$1
@@ -13,7 +13,7 @@ build() {
     cd -
 }
 
-build base
+#build base
 build master
 build worker
 #build submit

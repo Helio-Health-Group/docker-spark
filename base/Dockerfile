@@ -7,7 +7,7 @@ ENV INIT_DAEMON_BASE_URI http://identifier/init-daemon
 ENV INIT_DAEMON_STEP spark_master_init
 
 ENV SPARK_VERSION=2.4.6
-ENV HADOOP_VERSION=3.2
+ENV HADOOP_VERSION=3.2.0
 
 COPY wait-for-step.sh /
 COPY execute-step.sh /
@@ -22,6 +22,10 @@ RUN apk add --no-cache curl bash openjdk8-jre python3 py-pip nss libc6-compat \
       && tar -xvzf spark-${SPARK_VERSION}-bin-without-hadoop.tgz \
       && mv spark-${SPARK_VERSION}-bin-without-hadoop spark \
       && rm spark-${SPARK_VERSION}-bin-without-hadoop.tgz \
+      && wget https://archive.apache.org/dist/hadoop/common/hadoop-${HADOOP_VERSION}/hadoop-${HADOOP_VERSION}.tar.gz \
+      && tar -xvzf hadoop-${HADOOP_VERSION}.tar.gz \
+      && mv hadoop-${HADOOP_VERSION} hadoop \
+      && rm hadoop-${HADOOP_VERSION}.tar.gz \
       #&& cd /css \
       #&& jar uf /spark/jars/spark-core_2.11-${SPARK_VERSION}.jar org/apache/spark/ui/static/timeline-view.css \
       && cd /
